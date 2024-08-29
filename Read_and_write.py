@@ -28,7 +28,6 @@ if len(computer) == 0:
 print("\nThank you, starting now\n\n\n\n")
 def command_handler(prompt):
     if prompt == "":
-        print("\n")
         return
     if "create" in prompt:
         if prompt[7:] == "-h" or prompt[7:] == "--help":
@@ -65,6 +64,23 @@ def command_handler(prompt):
         else:
             print("File does not exist!")
             return
+    if "edit" in prompt:
+        if prompt[5:] == "-h" or prompt[5:] == "--help":
+            print("\nEdit Command Help:\n\nEnter the edit command followed by a mode and filename argument to edit files\nMode arguments include:\n\n-a or -append or -add to add/append a line to a file\n-r or -remove to remove the last line of the file(default) or to remove the line specified\n\nExamples:\n  'edit -a myfile'\n  'edit -r myfile'\n  'edit -r 3 myfile'\n\nNote: A .txt file extension will automatically be added to the filename\n\n")
+            return        
+        if "-append" in prompt[5:] or "-add" in prompt[5:] or "-a" in prompt[5:]:
+            print("Please specify filename!")
+            return
+        if prompt[4] != " ":
+            print("Command not recognized!")
+            return
+        filename = prompt[7:] + ".txt"
+        if os.path.exists(filename):
+            print("File already exists!")
+            return
+        f = open(filename, "x")
+        print("Successfully created " + filename)
+        return
     if prompt == "exit":
         print("Script Terminating!!!\n")
         exit()
