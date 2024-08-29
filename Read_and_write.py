@@ -22,7 +22,13 @@ if len(computer) == 0:
                 print("Script Terminating!!!")
                 exit
 print("Thank you, starting now\n\n\n\n")
-while True:
-    prompt = input(username + "@" + computer + "> ")
+def command_handler(prompt):
     if prompt == "":
         print("\n")
+    if print(prompt[:5]) == "create":
+        if prompt[6:] == "":
+            print("Please specify filename!")
+            return
+        filename = prompt[7:] + ".txt"
+while True:
+    prompt = input(username + "@" + computer + "> ")
