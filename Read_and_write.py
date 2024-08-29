@@ -33,7 +33,7 @@ def command_handler(prompt):
         if prompt[7:] == "-h" or prompt[7:] == "--help":
             print("\nCreate Command Help:\n\nEnter the create command followed by a filename argument to make a new writable file\n\nExample: 'create myfile'\n\nNote: A .txt file extension will automatically be added to the filename\n\n")
             return        
-        if prompt[6:] == "" or prompt[6] == " ":
+        if prompt[6:] == "" or prompt[6] == " ":    #will always call!!!! Similar in delete command
             print("Please specify filename!")
             return
         if prompt[6] != " ":
