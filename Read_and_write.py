@@ -2,7 +2,7 @@
 
 import os
 
-print("Welcome to the listing command line\n\n")
+print("Welcome to the Read and Write command line\n\n")
 print("Compiled for Windows using Pyinstaller, and installation program was created with Actual Installer\n")
 print("Copyright 2024 Everett Carrington\n\n\n\n")
 username = input("Please enter your username: ")
