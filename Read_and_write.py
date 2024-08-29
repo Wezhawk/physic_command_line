@@ -25,11 +25,18 @@ print("Thank you, starting now\n\n\n\n")
 def command_handler(prompt):
     if prompt == "":
         print("\n")
-    if print(prompt[:5]) == "create":
+        return
+    if "create" in prompt:
         if prompt[6:] == "":
             print("Please specify filename!")
             return
+        if prompt[6] != " ":
+            print("Command not recognized!")
+            return
         filename = prompt[7:] + ".txt"
+    else:
+        print("Command not recognized!")
+        return
 while True:
     prompt = input(username + "@" + computer + "> ")
     command_handler(prompt)
