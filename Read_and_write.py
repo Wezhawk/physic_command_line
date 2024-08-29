@@ -33,7 +33,7 @@ def command_handler(prompt):
         if prompt[7:] == "-h" or prompt[7:] == "--help":
             print("\nCreate Command Help:\n\nEnter the create command followed by a filename argument to make a new writable file\n\nExample: 'create myfile'\n\nNote: A .txt file extension will automatically be added to the filename\n\n")
             return        
-        if prompt[6:] == "":
+        if prompt[6:] == "" or prompt[6] == " ":
             print("Please specify filename!")
             return
         if prompt[6] != " ":
@@ -50,7 +50,7 @@ def command_handler(prompt):
         if prompt[7:] == "-h" or prompt[7:] == "--help":
             print("\nDelete Command Help:\n\nEnter the delete command followed by a filename argument to delete a file\n\nExample: 'delete myfile'\n\nNote: A .txt file extension will automatically be added to the filename\n\n")
             return
-        if prompt[6:] == "":
+        if prompt[6:] == "" or prompt[6] == " ":
             print("Please specify filename!")
             return
         if prompt[6] != " ":
@@ -66,10 +66,16 @@ def command_handler(prompt):
             return
     if "edit" in prompt:
         if prompt[5:] == "-h" or prompt[5:] == "--help":
-            print("\nEdit Command Help:\n\nEnter the edit command followed by a mode and filename argument to edit files\nMode arguments include:\n\n-a or -append or -add to add/append a line to a file\n-r or -remove to remove the last line of the file(default) or to remove the line specified\n\nExamples:\n  'edit -a myfile'\n  'edit -r myfile'\n  'edit -r 3 myfile'\n\nNote: A .txt file extension will automatically be added to the filename\n\n")
-            return        
-        if "-append" in prompt[5:] or "-add" in prompt[5:] or "-a" in prompt[5:]:
-            print("Please specify filename!")
+            print("\nEdit Command Help:\n\nEnter the edit command followed by a mode and filename argument to edit files\nMode arguments include:\n\n-a or --append or --add to add/append a line to a file\n-r or -remove to remove the last line of the file(default) or to remove the line specified\n\nExamples:\n  'edit -a myfile'\n  'edit -r myfile'\n  'edit -r 3 myfile'\n\nNote: A .txt file extension will automatically be added to the filename\n\n")
+            return
+        if prompt[4:] == "" or prompt[4] == " ":
+            print("Please specify argument!\nUse command 'edit -h' for more info")        
+        if "--append" in prompt[5:]:
+            if prompt[12:] == "" or prompt[12] == " ":
+                print("Please specify filename!")
+                return
+            filename = prompt[13:] + ".txt"
+
             return
         if prompt[4] != " ":
             print("Command not recognized!")
