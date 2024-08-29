@@ -32,3 +32,4 @@ def command_handler(prompt):
         filename = prompt[7:] + ".txt"
 while True:
     prompt = input(username + "@" + computer + "> ")
+    command_handler(prompt)
