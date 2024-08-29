@@ -21,5 +21,8 @@ if len(computer) == 0:
             if len(computer) == 0:
                 print("Script Terminating!!!")
                 exit
-
-
+print("Thank you, starting now\n\n\n\n")
+while True:
+    prompt = input(username + "@" + computer + "> ")
+    if prompt == "":
+        print("\n")
