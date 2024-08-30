@@ -1,0 +1,1 @@
+pyinstaller Physic_command_prompt.py.py --distpath ../Pyinstaller_Phyisic_Command_prompt --workpath ../Pyinstaller_Phyisic_Command_prompt/workfile -n phyisic_command_prompt --specpath ../Pyinstaller_Phyisic_Command_prompt/workfile -F --contents-directory ../Pyinstaller_Phyisic_Command_prompt/contents
