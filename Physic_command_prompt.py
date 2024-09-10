@@ -1,9 +1,10 @@
 #This program is a basic command line interface that can read and write files
 
 import os
+from urllib.request import urlretrieve
 
 print("Welcome to the Physic Command Line command line\n\n")
-print("Compiled for Windows using Pyinstaller, and installation program was created with InstallForge\n")
+print("Compiled for Windows using Pyinstaller\n")
 print("Copyright 2024 Everett Carrington\n\n\n\n")
 username = input("Please enter your username: ")
 if len(username) == 0:
@@ -77,7 +78,7 @@ def command_handler(prompt):
     if "edit" in prompt:
         #If --help or -h argument is given
         if prompt[5:] == "-h" or prompt[5:] == "--help":
-            print("\nEdit Command Help:\n\nEnter the edit command followed by a mode and filename argument to edit files\nMode arguments include:\n\n-a or --append or --add to add/append a line to a file\n-r or --remove to remove the last line of the file(default) or to remove the line specified\n\nExamples:\n  'edit -a myfile'\n  'edit -r myfile'\n  'edit -r 3 myfile'\n\nNote: A .txt file extension will automatically be added to the filename\n\n")
+            print("\nEdit Command Help:\n\nEnter the edit command followed by a mode and filename argument to edit files\nMode arguments include:\n\n-a or --append or --add to add/append a line to a file\n-r or --remove to remove the last line of the file(default) or to remove the line specified\n\nExamples:\n  'edit -a myfile'\n  'edit -r myfile'\n  'edit -r 3 myfile'\n\nNote: A .txt file extension will automatically be added to the filename\nNote: File will be created if it does not exist\n\n")
             return
         if prompt[5:] == "" or prompt[5] == " ":
             print("Please specify argument!\nUse command 'edit -h' for more info")
@@ -101,14 +102,70 @@ def command_handler(prompt):
                         if len(lineToAppend) == 0:
                             print("Exiting Command!\n")
                             return
-            if os.path.isfile(filename):
+            if not os.path.isfile(filename):
+                print("File does not exist!")
+                return
+            else:
                 f = open(filename, "a")
                 f.write(lineToAppend + "\n")
                 f.close()
                 print(lineToAppend + " was added/appended to " + filename)
                 return
-            else:
+        # If --add argument given
+        elif "--add" in prompt[5:]:
+            if prompt[10:] == "":
+                print("Please specify filename!")
+                return
+            if prompt[11:] == "":
+                print("Please specify filename!")
+                return
+            filename = prompt[11:] + ".txt"
+            lineToAppend = input("Please enter the line you would to add/append: ")
+            if len(lineToAppend) == 0:
+                lineToAppend = input("Add/Append must contain at least 1 characters. Please try again: ")
+                if len(lineToAppend) == 0:
+                    lineToAppend = input("Add/Append must contain at least 1 characters. Please try again: ")
+                    if len(lineToAppend) == 0:
+                        lineToAppend = input("Add/Append must contain at least 1 characters. Please try again: ")
+                        if len(lineToAppend) == 0:
+                            print("Exiting Command!\n")
+                            return
+            if not os.path.isfile(filename):
                 print("File does not exist!")
+                return
+            else:
+                f = open(filename, "a")
+                f.write(lineToAppend + "\n")
+                f.close()
+                print(lineToAppend + " was added/appended to " + filename)
+                return
+        # If -a argument given
+        elif "-a" in prompt[5:]:
+            if prompt[7:] == "":
+                print("Please specify filename!")
+                return
+            if prompt[8:] == "":
+                print("Please specify filename!")
+                return
+            filename = prompt[8:] + ".txt"
+            lineToAppend = input("Please enter the line you would to add/append: ")
+            if len(lineToAppend) == 0:
+                lineToAppend = input("Add/Append must contain at least 1 characters. Please try again: ")
+                if len(lineToAppend) == 0:
+                    lineToAppend = input("Add/Append must contain at least 1 characters. Please try again: ")
+                    if len(lineToAppend) == 0:
+                        lineToAppend = input("Add/Append must contain at least 1 characters. Please try again: ")
+                        if len(lineToAppend) == 0:
+                            print("Exiting Command!\n")
+                            return
+            if not os.path.isfile(filename):
+                print("File does not exist!")
+                return
+            else:
+                f = open(filename, "a")
+                f.write(lineToAppend + "\n")
+                f.close()
+                print(lineToAppend + " was added/appended to " + filename)
                 return
         else:
             if prompt[5] != "":
