@@ -174,6 +174,13 @@ def command_handler(prompt):
         if prompt[4] != " ":
             print("Command not recognized!")
             return
+    # Install Command
+    if prompt[:7] == "install":
+        if prompt[8:] == "-h" or prompt[8:] == "--help":
+            print("\nInstall Command Help:\n\nEnter the install command followed by a package name argument to install additional modules\n\n")
+            return
+        
+        return
     # Exit Command
     if prompt == "exit":
         print("Script Terminating!!!\n")
