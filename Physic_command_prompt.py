@@ -5,7 +5,7 @@ from urllib.request import urlretrieve
 
 print("Welcome to the Physic Command Line command line\n\n")
 print("Compiled for Windows using Pyinstaller\n")
-print("Copyright 2024 Everett Carrington\n\n\n\n")
+print("Copyright 2024 Wezhawk\n\n\n\n")
 username = input("Please enter your username: ")
 if len(username) == 0:
     username = input("Please try again: ")
