@@ -78,7 +78,7 @@ def command_handler(prompt):
     if "edit" in prompt:
         #If --help or -h argument is given
         if prompt[5:] == "-h" or prompt[5:] == "--help":
-            print("\nEdit Command Help:\n\nEnter the edit command followed by a mode and filename argument to edit files\nMode arguments include:\n\n-a or --append or --add to add/append a line to a file\n-r or --remove to remove the last line of the file(default) or to remove the line specified\n\nExamples:\n  'edit -a myfile'\n  'edit -r myfile'\n  'edit -r 3 myfile'\n\nNote: A .txt file extension will automatically be added to the filename\nNote: File will be created if it does not exist\n\n")
+            print("\nEdit Command Help:\n\nEnter the edit command followed by a mode and filename argument to edit files\nMode arguments include:\n\n-a or --append or --add to add/append a line to a file\n\nExamples:\n  'edit -a myfile'\n\nNote: A .txt file extension will automatically be added to the filename\nNote: File will be created if it does not exist\n\n")
             return
         if prompt[5:] == "" or prompt[5] == " ":
             print("Please specify argument!\nUse command 'edit -h' for more info")
@@ -179,6 +179,10 @@ def command_handler(prompt):
         if prompt[8:] == "-h" or prompt[8:] == "--help":
             print("\nInstall Command Help:\n\nEnter the install command followed by a package name argument to install additional modules\n\n")
             return
+        else:
+            packageToInstall = prompt[8:]
+            print("Searching for " + packageToInstall + " in primary package repo at https://github.com/Wezhawk/physic_command_line_packages")
+
         
         return
     # Exit Command
