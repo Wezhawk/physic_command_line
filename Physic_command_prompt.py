@@ -3,7 +3,6 @@
 import os
 from urllib.request import urlretrieve
 from urllib.request import urlopen
-from urllib.error import URLError
 
 print("Welcome to the Physic Command Line command line\n\n")
 print("Compiled for Windows using Pyinstaller\n")
@@ -179,21 +178,25 @@ def command_handler(prompt):
     # Install Command
     if prompt[:7] == "install":
         if prompt[8:] == "-h" or prompt[8:] == "--help":
-            print("\nInstall Command Help:\n\nEnter the install command followed by a package name argument to install additional modules\n\n")
+            print("\nInstall Command Help:\n\nEnter the install command followed by a package name argument to install additional modules\n\nNote: You must have an active internet connection to use the install command")
             return
         else:
             packageToInstall = prompt[8:]
             if packageToInstall == "" or packageToInstall == " ":
                 print("Please enter a package name!")
+                return
             print("Searching for " + packageToInstall + " in primary package repo at https://github.com/Wezhawk/physic_command_line_packages")
-            try:
-                html = urlopen("https://github.com/Wezhawk/physic_command_line_packages/" + packageToInstall)
-            except URLError as e:
-                print("Package not exist!")
-            else:
-                print('Package located')
+            url = "https://github.com/Wezhawk/physic_command_line_packages/" + packageToInstall
+            downloadFilename = packageToInstall
+            if urlopen(url, downloadFilename):
+                print("Package found")
+                install = input("Are you sure you want to install? (y/n): ")
+                if input = "y"
+                    print("\nProceeding with installation\n")
+                    print("Downloading file...\n")
 
-        
+            else:
+                print("Package does not exist!")
         return
     # Exit Command
     if prompt == "exit":
