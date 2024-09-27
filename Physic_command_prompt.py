@@ -21,7 +21,7 @@ if len(username) == 0:
                 username == getpass.getuser()
                 if len(username) == 0:
                     print("Error in fetching username! Using default\n")
-                    username == "username"
+                    username == "user"
 computer = input("Please enter your computer's name or leave blank to use your current computer name: ")
 if len(computer) == 0:
     computer = platform.node()
@@ -191,9 +191,10 @@ def command_handler(prompt):
             if packageToInstall == "" or packageToInstall == " ":
                 print("Please enter a package name!")
                 return
+            packageToInstall = packageToInstall + ".py"
             url = "https://wezhawk.github.io/physic_command_line_packages/" + packageToInstall
             print("Searching for " + packageToInstall + " in primary package repo at " + url)
-            downloadFilename = packageToInstall
+            downloadFilename = "packages/" + packageToInstall
             try: 
                 urlopen(url)
             except:
@@ -201,11 +202,21 @@ def command_handler(prompt):
             else:
                 print("Package found")
                 install = input("Are you sure you want to install? (y/n): ")
-                if input == "y":
-                    print("\nProceeding with installation\n")
-                    print("Downloading file...\n")
-                    urlretrieve(url, downloadFilename)
-
+                if install == "y":
+                    try:
+                        if os.path.exists(downloadFilename):
+                            print("Package already installed!")
+                            return
+                        print("\nProceeding with installation\n")
+                        print("Downloading file...\n")
+                        if not os.path.exists("packages"):
+                            os.makedirs("packages")
+                        urlretrieve(url, downloadFilename)
+                    except Exception as e: 
+                        print(e)
+                    else:
+                        print("Successfully installed and downloaded!")
+                    return
                 else:
                     print("Aborting install!")
         return
