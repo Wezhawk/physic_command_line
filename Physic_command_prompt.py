@@ -1,5 +1,8 @@
 #This program is a basic command line interface that can read and write files
 
+import socket
+import getpass
+import platform
 import os
 from urllib.request import urlretrieve
 from urllib.request import urlopen
@@ -7,26 +10,29 @@ from urllib.request import urlopen
 print("Welcome to the Physic Command Line command line\n\n")
 print("Compiled for Windows using Pyinstaller\n")
 print("Copyright 2024 Wezhawk\n\n\n\n")
-username = input("Please enter your username: ")
+username = input("Please enter your username or leave blank to use your current sign in: ")
 if len(username) == 0:
-    username = input("Please try again: ")
+    username = os. getlogin()
     if len(username) == 0:
-        username = input("Please try again: ")
+        username == os.path.expanduser()
         if len(username) == 0:
-            username = input("Please try again: ")
+            username == os.environ.get()
             if len(username) == 0:
-                print("Script Terminating!!!\n")
-                exit()
-computer = input("Please enter your computer's name: ")
+                username == getpass.getuser()
+                if len(username) == 0:
+                    print("Error in fetching username! Using default\n")
+                    username == "username"
+computer = input("Please enter your computer's name or leave blank to use your current computer name: ")
 if len(computer) == 0:
-    computer = input("Please try again: ")
-    if len(computer) == 0:
-        computer = input("Please try again: ")
+    computer = platform.node()
+    if len(computer) == 0: 
+        os.environ['COMPUTERNAME']
         if len(computer) == 0:
-            computer = input("Please try again: ")
+            socket.gethostname()
             if len(computer) == 0:
-                print("Script Terminating!!!\n")
-                exit()
+                print("Error in fetching computer name! Using default\n")
+                computer = "computer"
+
 print("\nThank you, starting now\n\n\n\n")
 def command_handler(prompt):
     if prompt == "":
