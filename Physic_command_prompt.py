@@ -185,18 +185,23 @@ def command_handler(prompt):
             if packageToInstall == "" or packageToInstall == " ":
                 print("Please enter a package name!")
                 return
-            print("Searching for " + packageToInstall + " in primary package repo at https://github.com/Wezhawk/physic_command_line_packages")
-            url = "https://github.com/Wezhawk/physic_command_line_packages/" + packageToInstall
+            url = "https://wezhawk.github.io/physic_command_line_packages/" + packageToInstall
+            print("Searching for " + packageToInstall + " in primary package repo at " + url)
             downloadFilename = packageToInstall
-            if urlopen(url, downloadFilename):
+            try: 
+                urlopen(url)
+            except:
+                print("Package does not exist!")
+            else:
                 print("Package found")
                 install = input("Are you sure you want to install? (y/n): ")
-                if input = "y"
+                if input == "y":
                     print("\nProceeding with installation\n")
                     print("Downloading file...\n")
+                    urlretrieve(url, downloadFilename)
 
-            else:
-                print("Package does not exist!")
+                else:
+                    print("Aborting install!")
         return
     # Exit Command
     if prompt == "exit":
