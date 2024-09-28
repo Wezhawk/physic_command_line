@@ -204,15 +204,23 @@ def command_handler(prompt):
                 install = input("Are you sure you want to install? (y/n): ")
                 if install == "y":
                     try:
+                        if not os.path.exists("packages"):
+                            os.makedirs("packages")
+                        if not os.path.exists("packages/packages_list"):
+                            f = open("packages/packages_list", "x")
+                            f.close()
+                            print("Successfully created package list file")
                         if os.path.exists(downloadFilename):
                             print("Package already installed!")
                             return
                         print("\nProceeding with installation\n")
                         print("Downloading file...\n")
-                        if not os.path.exists("packages"):
-                            os.makedirs("packages")
                         urlretrieve(url, downloadFilename)
+                        f = open("packages/packages_list", "a")
+                        f.write(packageToInstall)
+                        f.close()
                     except Exception as e: 
+                        print("Error!: ")
                         print(e)
                     else:
                         print("Successfully installed and downloaded!")
